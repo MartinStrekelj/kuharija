@@ -5,6 +5,7 @@ import Greetings from "../components/Greetings/Greetings"
 import "tachyons";
 import Searchbar from '../components/Searchbar/Searchbar';
 import Scroll from '../components/Scroll/Scroll';
+import 'bulma/css/bulma.css'
 
 class App extends Component {
   constructor() {

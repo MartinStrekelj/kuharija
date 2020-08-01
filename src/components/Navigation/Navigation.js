@@ -8,8 +8,7 @@ class Navigation extends Component {
     return(
         <nav className="dashboardNav f5">
                 <a  href="1">Odjava</a>
-                <a  href="2">Počisti filtre</a>
-                <a  href="3">Filtriraj</a>
+                <a  href="2">Filtriraj</a>
         </nav>
     );
   } else {
