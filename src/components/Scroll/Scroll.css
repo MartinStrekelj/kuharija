@@ -1,0 +1,18 @@
+.scrollPane{
+    overflow-y:"scroll";
+    border: 3px solid black;
+    height: 700px;
+    width: 90%;
+    margin-left:5%;
+    margin-right: 5%;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .scrollPane{
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+}

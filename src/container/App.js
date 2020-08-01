@@ -4,6 +4,7 @@ import List from "../components/List/List"
 import Greetings from "../components/Greetings/Greetings"
 import "tachyons";
 import Searchbar from '../components/Searchbar/Searchbar';
+import Scroll from '../components/Scroll/Scroll';
 
 class App extends Component {
   constructor() {
@@ -39,7 +40,9 @@ class App extends Component {
       <Navigation loggedIn={this.state.isLoggedIn} />
       <Greetings username={this.state.user.username}/>
       <Searchbar updateInput={this.updateInput}/>
-      <List />
+      <Scroll>
+        <List />
+      </Scroll>
     </div>
   );
 }   
