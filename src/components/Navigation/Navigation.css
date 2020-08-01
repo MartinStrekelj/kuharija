@@ -1,0 +1,57 @@
+nav .register {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 3em;
+}
+
+nav a {
+    font-weight: 700;
+    font-size: 1.2em;
+    padding: 10px;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+}
+
+nav a:hover{
+    color: chocolate;
+}
+
+
+.shadow {
+    -webkit-box-shadow: 3px 3px 5px 1px #000;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    3px 3px 5px 1px #000;  /* Firefox 3.5 - 3.6 */
+    box-shadow:         3px 3px 5px 1px #000;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
+
+
+
+.dashboardNav{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    align-content: center;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+}
+
+.dashboardNav a{
+    font-size: 1.1em;
+    float: left;
+    text-align: center;
+    padding: 15px;
+    border-right: 1px solid black ;
+}
+
+  @media only screen and (max-width: 600px) {
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        text-decoration: none;
+        background-color: white;
+        color: black;
+        box-shadow: 2px black;
+    }
+  }
