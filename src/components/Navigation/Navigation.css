@@ -1,4 +1,4 @@
-nav .register {
+.register {
     display: flex;
     flex-direction: row-reverse;
     padding: 3em;

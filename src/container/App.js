@@ -6,12 +6,13 @@ import "tachyons";
 import Searchbar from '../components/Searchbar/Searchbar';
 import Scroll from '../components/Scroll/Scroll';
 import 'bulma/css/bulma.css'
+import SignIn from '../components/SignIn/SignIn';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       input: "",
       user: {
         id: "",
@@ -39,11 +40,20 @@ class App extends Component {
   return(
     <div>
       <Navigation loggedIn={this.state.isLoggedIn} />
-      <Greetings username={this.state.user.username}/>
-      <Searchbar updateInput={this.updateInput}/>
-      <Scroll>
-        <List />
-      </Scroll>
+      {this.state.isLoggedIn ?
+        <div>
+          <Greetings username={this.state.user.username}/>
+          <Searchbar updateInput={this.updateInput}/>
+          <Scroll>
+            <List />
+          </Scroll>
+        </div>
+        :
+        // ________
+        <div>
+          <SignIn />
+        </div>
+    }
     </div>
   );
 }   
