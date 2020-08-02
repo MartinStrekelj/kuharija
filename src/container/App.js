@@ -8,6 +8,17 @@ import Scroll from '../components/Scroll/Scroll';
 import 'bulma/css/bulma.css'
 import SignIn from '../components/SignIn/SignIn';
 
+
+const InitialState = {
+  isLoggedIn: false,
+  input: "",
+  user: {
+    id: "",
+    username: "",
+    role: "",
+  }
+}
+
 class App extends Component {
   constructor() {
     super();
@@ -22,7 +33,11 @@ class App extends Component {
     }
   }
 
-  QueryDishes(){
+  logout = () => {
+    this.setState(InitialState);
+  }
+
+  QueryDishes = () => {
     console.log("");
   }
 
@@ -46,7 +61,10 @@ class App extends Component {
   render(){ 
   return(
     <div>
-      <Navigation userId={this.state.user.id} />
+      <Navigation 
+      userId={this.state.user.id}
+      logout={this.logout}
+      />
       {this.state.user.id ?
         <div>
           <Greetings username={this.state.user.username}/>

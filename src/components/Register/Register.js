@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import "./SignIn.css"
+import "./Register.css"
 
-class SignIn extends Component {
+class Register extends Component {
 
     constructor(){
         super()
         this.state = {
             username: "",
+            email: "",
             password: "",
         }
     }
@@ -15,15 +16,16 @@ class SignIn extends Component {
         this.setState({username: event.target.value});
     }
 
+    onEmailInputChange = (event) =>{
+        this.setState({email: event.target.value});
+    }
+
     onPasswordInputChange = (event) =>{
         this.setState({password: event.target.value});
     }
 
-    onSignIn = (event) =>{
-        const user = {
-            username: this.state.username
-        }
-        this.props.loadUser(user);
+    onRegister = (event) =>{
+        console.log(this.state)
     }
 
     render(){
@@ -31,13 +33,19 @@ class SignIn extends Component {
             <div className="wrapper">
                 <div className="pa4">
                     <p className="f1 pa1" style={{textAlign: "center"}}> Kuharija</p>
-                    <p className="f3 pa1" style={{textAlign: "center"}}>Prijava</p>
+                    <p className="f3 pa1" style={{textAlign: "center"}}>Registracija</p>
                     <br/>
                     <div style={{width: "300px"}}>
                         <label className="label">Uporabniško ime</label>
                         <input className="input is-fullwidth" type="text" 
                         placeholder="Vpiši svoje uporabniško ime"
                         onChange={this.onUsernameInputChange}
+                        />
+                        <br/>
+                        <label className="label">Email</label>
+                        <input className="input is-fullwidth" type="email" 
+                        placeholder="Vpiši svoj email"
+                        onChange={this.onEmailInputChange}
                         />
                         <br/>
                         <label className="label">Geslo</label>
@@ -47,8 +55,8 @@ class SignIn extends Component {
                         />
                         <br></br>
                         <button style={{ width: "70%", marginLeft: "15%"}} className="button is-link" 
-                        onClick={this.onSignIn}>
-                            Vpiši se
+                        onClick={this.onRegister}>
+                            Registracija
                         </button>
                     </div>
                 </div>
@@ -57,4 +65,4 @@ class SignIn extends Component {
     }
 }
 
-export default SignIn;
+export default Register;
