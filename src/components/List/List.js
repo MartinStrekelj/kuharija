@@ -7,16 +7,15 @@ import Item from "../Item/Item";
 
 class List extends Component{
     render(){
-        
         return(
             <div className="columns is-multiline b pa3" style={{textAlign: "center"}}>
                 {food.map(fud => {
                     return (
-                        <div className="column is-4">
+                        <div key={fud.fid} className="column is-4">
                             <Item 
                             imeJedi={fud.imeJedi} 
                             tipJedi={fud.tipJedi}
-                            fid    ={fud.fid}
+                            fid    = {fud.fid}
                             />
                         </div>
                     )

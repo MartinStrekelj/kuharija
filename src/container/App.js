@@ -16,7 +16,7 @@ class App extends Component {
       input: "",
       user: {
         id: "",
-        username: "Janez",
+        username: "",
         role: "",
       }
     }
@@ -31,16 +31,23 @@ class App extends Component {
     this.QueryDishes();
   }
 
-  loadUser(){
-    this.setState({isLoggedIn: true})
-    console.log("USER")
+  loadUser = (data) => {
+    console.log(data)
+    this.setState({
+      isLoggedIn: true,
+      user: {
+        id: 1,
+        username: data.username,
+        role: "admin"
+      }
+    })
   }
 
   render(){ 
   return(
     <div>
-      <Navigation loggedIn={this.state.isLoggedIn} />
-      {this.state.isLoggedIn ?
+      <Navigation userId={this.state.user.id} />
+      {this.state.user.id ?
         <div>
           <Greetings username={this.state.user.username}/>
           <Searchbar updateInput={this.updateInput}/>
@@ -51,7 +58,7 @@ class App extends Component {
         :
         // ________
         <div>
-          <SignIn />
+          <SignIn loadUser={this.loadUser} />
         </div>
     }
     </div>

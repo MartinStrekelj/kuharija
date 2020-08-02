@@ -4,7 +4,7 @@ import "./Navigation.css";
 class Navigation extends Component {
   render(){
 
-  if (this.props.loggedIn){
+  if (this.props.userId){
     return(
         <nav className="dashboardNav f5">
               <a  href="1">Odjava</a>
