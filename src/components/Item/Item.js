@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const Item = ({ tipJedi, imeJedi, fotoJed, fid }) =>{
+const Item = ({ tipJedi, imeJedi, fotoJed, fid, onRouteChange, showFoodInfo }) =>{
     return(
         <div className="card">
             <div className="card-image">
@@ -14,7 +14,10 @@ const Item = ({ tipJedi, imeJedi, fotoJed, fid }) =>{
                 <p className="subtitle is-6">{tipJedi}</p>
             </div>
             <div className="card-footer">
-                <a className="card-footer-item" href={fid} alt="gud fud">Poglej recept</a>
+                <button className="card-footer-item" onClick={() => {
+                    onRouteChange("itemLookup")
+                    showFoodInfo(fid)
+                    }} alt="gud fud">Poglej recept</button>
             </div>
         </div>
     );

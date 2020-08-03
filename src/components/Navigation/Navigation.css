@@ -1,10 +1,14 @@
-.register {
+.navBtn{
     display: flex;
     flex-direction: row-reverse;
     padding: 3em;
 }
 
-nav a {
+.navBtn button{
+    margin: 5px;
+}
+
+nav button {
     font-weight: 700;
     font-size: 1.2em;
     padding: 10px;
@@ -13,7 +17,7 @@ nav a {
     color: black;
 }
 
-nav a:hover{
+nav button:hover{
     color: chocolate;
 }
 
@@ -35,7 +39,7 @@ nav a:hover{
     width: 100%;
 }
 
-.dashboardNav a{
+.dashboardNav button{
     font-size: 1.1em;
     float: left;
     text-align: center;
@@ -44,7 +48,7 @@ nav a:hover{
 }
 
   @media only screen and (max-width: 600px) {
-    nav a {
+    nav button {
         width: 100%;
         text-align: center;
         padding: 10px;

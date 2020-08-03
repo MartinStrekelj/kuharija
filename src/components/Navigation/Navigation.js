@@ -1,30 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./Navigation.css";
 
-class Navigation extends Component {
-  render(){
-
-  if (this.props.userId){
+const Navigation = ({logout, onRouteChange, route, userId}) => {
     return(
-        <nav className="dashboardNav f5">
-              <a  href="1" onClick={this.props.logout}>Odjava</a>
-              <a  href="2">Filtriraj</a>
-              <a  href="2">Dodaj novo</a>
+    userId ?
+    // if user IS logged in:
+    <nav className="dashboardNav f5">
+          <button  
+          onClick={logout}>
+            Odjava
+          </button>
+          <button>Filtriraj</button>
+          <button>Dodaj novo</button>
+    </nav>      
+    : // User is NOT logged in:
+    // User is on register route
+        <nav className="navBtn"> 
+              <button
+              className="shadow pointer"
+              onClick={() => onRouteChange("signin")}>
+                { "Prijava".toUpperCase() }
+              </button>
+              <button
+                className="shadow pointer"
+                onClick={() => onRouteChange("register")}>
+            { "Registracija".toUpperCase() }
+          </button>
         </nav>
-    );
-  } else {
-    return(
-        <nav className="register">
-              <a 
-              className="shadow"
-              href="register">
-                { "Registracija".toUpperCase() }
-              </a>
-        </nav>
-    );
-  }
-  
+    )
 }   
-}
 
 export default Navigation;
