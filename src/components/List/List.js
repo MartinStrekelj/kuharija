@@ -6,7 +6,6 @@ import Item from "../Item/Item";
 
 
 class List extends Component{
-
     render(){
         return(
             <div className="columns is-multiline b pa3" style={{textAlign: "center"}}>

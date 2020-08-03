@@ -18,7 +18,6 @@ const InitialState = {
   user: {
     id: "",
     username: "",
-    role: "",
   },
   selectedDish: {
     fid: "",
@@ -39,7 +38,6 @@ class App extends Component {
       user: {
         id: "",
         username: "",
-        role: "",
       },
       selectedDish: {
         fid: "",
@@ -68,16 +66,14 @@ class App extends Component {
     this.setState({
       isLoggedIn: true,
       user: {
-        id: 1,
+        id: data.id,
         username: data.username,
-        role: "admin"
       }
     })
     this.onRouteChange("home")
   }
 
   onRouteChange = (newRoute) =>{
-    console.log(newRoute)
     this.setState({route: newRoute});
   }
 

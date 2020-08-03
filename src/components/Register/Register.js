@@ -37,24 +37,27 @@ class Register extends Component {
                     <br/>
                     <div style={{width: "300px"}}>
                         <label className="label">Uporabniško ime</label>
-                        <input className="input is-fullwidth" type="text" 
+                        <input className="input is-fullwidth is-info" type="text" 
                         placeholder="Vpiši svoje uporabniško ime"
                         onChange={this.onUsernameInputChange}
                         />
                         <br/>
                         <label className="label">Email</label>
-                        <input className="input is-fullwidth" type="email" 
+                        <input className="input is-fullwidth is-info" type="email" 
                         placeholder="Vpiši svoj email"
                         onChange={this.onEmailInputChange}
                         />
                         <br/>
                         <label className="label">Geslo</label>
-                        <input className="input is-fullwidth" type="password" 
+                        <input className="input is-fullwidth is-info" type="password" 
                         placeholder="Vpiši svoje geslo"
                         onChange={this.onPasswordInputChange}
+                        style={{marginBottom: "15px"}}
                         />
                         <br></br>
-                        <button style={{ width: "70%", marginLeft: "15%"}} className="button is-link" 
+                        <button 
+                        style={{ width: "70%", marginLeft: "15%"}} 
+                        className="button is-link is-medium is-outlined" 
                         onClick={this.onRegister}>
                             Registracija
                         </button>

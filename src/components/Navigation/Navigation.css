@@ -1,7 +1,8 @@
 .navBtn{
     display: flex;
     flex-direction: row-reverse;
-    padding: 3em;
+    background-color:rgba(255, 255, 255, 0.7);
+    margin-bottom: 3em;
 }
 
 .navBtn button{
@@ -18,7 +19,7 @@ nav button {
 }
 
 nav button:hover{
-    color: chocolate;
+    color: rgb(50, 50, 195);
 }
 
 
@@ -45,6 +46,7 @@ nav button:hover{
     text-align: center;
     padding: 15px;
     border-right: 1px solid black ;
+    margin: 5px;
 }
 
   @media only screen and (max-width: 600px) {

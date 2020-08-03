@@ -21,9 +21,23 @@ class SignIn extends Component {
 
     onSignIn = (event) =>{
         const user = {
-            username: this.state.username
+            username: this.state.username,
+            password: this.state.password,
         }
-        this.props.loadUser(user);
+        fetch("http://localhost:3000/signin", ({
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        }))
+        .then(response => response.json())
+        .then(user => {
+            if (user.id){
+                this.props.loadUser(user)
+            }
+        })
     }
 
     render(){
@@ -35,18 +49,24 @@ class SignIn extends Component {
                     <br/>
                     <div style={{width: "300px"}}>
                         <label className="label">Uporabniško ime</label>
-                        <input className="input is-fullwidth" type="text" 
+                        <input 
+                        required={true}
+                        className="input is-fullwidth is-info" type="text" 
                         placeholder="Vpiši svoje uporabniško ime"
                         onChange={this.onUsernameInputChange}
                         />
                         <br/>
-                        <label className="label">Geslo</label>
-                        <input className="input is-fullwidth" type="password" 
+                        <label className="label" style={{marginBottom: "15px"}}>Geslo</label>
+                        <input
+                        required={true}
+                        className="input is-fullwidth is-info" type="password" 
                         placeholder="Vpiši svoje geslo"
                         onChange={this.onPasswordInputChange}
                         />
                         <br></br>
-                        <button style={{ width: "70%", marginLeft: "15%"}} className="button is-link" 
+                        <button 
+                        style={{ width: "70%", marginLeft: "15%"}} 
+                        className="button is-link is-medium is-outlined" 
                         onClick={this.onSignIn}>
                             Vpiši se
                         </button>
