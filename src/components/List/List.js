@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import "./List.css"
 import Item from "../Item/Item";
-import Axios from 'axios';
 
 
 
@@ -15,9 +14,10 @@ class List extends Component{
         }
     }
     componentDidMount() {
-        Axios.get("http://localhost:3000/food")
-        .then(response => {
-            this.setState({items: response.data})
+        fetch("http://localhost:3000/food")
+        .then(response => response.json())
+        .then(data => {
+            this.setState({items: data})
         })
         .catch(err => {
             this.setState({errorMessage: err.message});
@@ -36,11 +36,10 @@ class List extends Component{
                             return (
                                 <div key={food.id} className="column is-4">
                                     <Item
-                                    onRouteChange={this.props.onRouteChange} 
                                     imeJedi = {food.jed} 
                                     tipJedi = {food.tip}
-                                    fid     = {food.id}
-                                    showFoodInfo = {this.props.showFoodInfo}
+                                    id      = {food.id}
+                                    lookupItem = {this.props.lookupItem}
                                     />
                                 </div>
                             )

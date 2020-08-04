@@ -18,7 +18,8 @@ const InitialState = {
   user: {
     id: "",
     username: "",
-  }
+  },
+  selectedId: "3"
 }
 
 class App extends Component {
@@ -31,7 +32,14 @@ class App extends Component {
       user: {
         id: "",
         username: "",
-      }
+      },
+      selectedDish: {
+        id: "",
+        jed: "",
+        tip: "",
+        postopek: "",
+        sestavine: ""
+        }
     }
   }
 
@@ -52,6 +60,22 @@ class App extends Component {
       }
     })
     this.onRouteChange("home")
+  }
+
+  lookupItem = (jed) =>{
+    fetch(`http://localhost:3000/food/?id=${jed.id}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({selectedDish: {
+        id: data[0].id,
+        jed: data[0].jed,
+        tip: data[0].tip,
+        postopek: data[0].postopek,
+        sestavine: data[0].sestavine
+        }})
+      this.onRouteChange("lookup")
+    })
+    .catch(err => console.log("Error with lookup"))
   }
 
   onRouteChange = (newRoute) =>{
@@ -89,14 +113,14 @@ class App extends Component {
           <Scroll>
             <List
             input ={this.state.input} 
-            onRouteChange={this.onRouteChange}
+            lookupItem={this.lookupItem}
             />
           </Scroll>
         </div>
         )
         :
         // selected one recipe
-        <ItemLookup /> 
+        <ItemLookup izbranaJed={this.state.selectedDish} /> 
         )
     }
     </div>

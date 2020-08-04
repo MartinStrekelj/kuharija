@@ -1,28 +1,12 @@
-import React , { Component } from "react";
+import React from "react";
 
-class ItemLookup extends Component {
-
-    constructor(props){
-        super(props)
-        this.state = {
-            item: {
-                id: props.id,
-                jed: "",
-                tip: "",
-                postopek: "",
-                sestavine: {}
-            }
-        }
-    }
-
-
-    render(){
-        return(
+const ItemLookup = ({izbranaJed}) => {
+    return(
             <div>
-                <h1>Hello world</h1>
+                <h1>{izbranaJed.jed}</h1>
             </div>
-        )
-    }
+    )
+
 }
 
 export default ItemLookup;

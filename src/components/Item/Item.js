@@ -2,7 +2,7 @@ import React from 'react'
 import "./Item.css"
 
 
-const Item = ({ tipJedi, imeJedi, fotoJed, fid, onRouteChange,}) =>{
+const Item = ({ tipJedi, imeJedi,  id, lookupItem}) =>{
     return(
         <div className="card b--solid bw2">
             <div className="card-image ">
@@ -19,7 +19,7 @@ const Item = ({ tipJedi, imeJedi, fotoJed, fid, onRouteChange,}) =>{
                     <button
                     className="button is-link is-fullwidth is-outlined"  
                     onClick={() => {
-                        onRouteChange("itemLookup")
+                        lookupItem({id})
                         }}> 
                         {"Recept".toUpperCase()}
                     </button>
