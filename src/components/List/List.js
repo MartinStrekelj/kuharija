@@ -37,8 +37,8 @@ class List extends Component{
                                 <div key={food.id} className="column is-4">
                                     <Item
                                     onRouteChange={this.props.onRouteChange} 
-                                    imeJedi ={food.jed} 
-                                    tipJedi ={food.tip}
+                                    imeJedi = {food.jed} 
+                                    tipJedi = {food.tip}
                                     fid     = {food.id}
                                     showFoodInfo = {this.props.showFoodInfo}
                                     />

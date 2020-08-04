@@ -3,8 +3,8 @@ import "./Register.css"
 
 class Register extends Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             username: "",
             email: "",
@@ -24,7 +24,7 @@ class Register extends Component {
         this.setState({password: event.target.value});
     }
 
-    onRegister = (event) => {  
+    onRegister = () => {  
         fetch("http://localhost:3000/register", ({
             method: "POST",
             headers: {

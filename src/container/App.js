@@ -20,6 +20,7 @@ const InitialState = {
     username: "",
   }
 }
+
 class App extends Component {
   constructor() {
     super();
@@ -57,13 +58,6 @@ class App extends Component {
     this.setState({route: newRoute});
   }
 
-  showFoodInfo = (foodId) => {
-    console.log(foodId)
-    // Fetch food info
-    // Change route to itemLookup
-    //  display food info
-}
-
   render(){ 
   return(
     <div>
@@ -95,14 +89,14 @@ class App extends Component {
           <Scroll>
             <List
             input ={this.state.input} 
-            showFoodInfo ={this.showFoodInfo}
             onRouteChange={this.onRouteChange}
             />
           </Scroll>
         </div>
         )
         :
-        <ItemLookup />
+        // selected one recipe
+        <ItemLookup /> 
         )
     }
     </div>

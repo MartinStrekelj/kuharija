@@ -2,7 +2,7 @@ import React from 'react'
 import "./Item.css"
 
 
-const Item = ({ tipJedi, imeJedi, fotoJed, fid, onRouteChange, showFoodInfo }) =>{
+const Item = ({ tipJedi, imeJedi, fotoJed, fid, onRouteChange,}) =>{
     return(
         <div className="card b--solid bw2">
             <div className="card-image ">
@@ -20,8 +20,8 @@ const Item = ({ tipJedi, imeJedi, fotoJed, fid, onRouteChange, showFoodInfo }) =
                     className="button is-link is-fullwidth is-outlined"  
                     onClick={() => {
                         onRouteChange("itemLookup")
-                        showFoodInfo(fid)
-                        }} alt="gud fud"> {"Recept".toUpperCase()}
+                        }}> 
+                        {"Recept".toUpperCase()}
                     </button>
                 </div>
             </div>

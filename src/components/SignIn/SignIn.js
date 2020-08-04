@@ -3,8 +3,8 @@ import "./SignIn.css"
 
 class SignIn extends Component {
 
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             username: "",
             password: "",
@@ -19,7 +19,7 @@ class SignIn extends Component {
         this.setState({password: event.target.value});
     }
 
-    onSignIn = (event) =>{
+    onSignIn = () =>{
         const user = {
             username: this.state.username,
             password: this.state.password,
