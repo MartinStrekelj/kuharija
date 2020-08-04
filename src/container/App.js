@@ -13,21 +13,13 @@ import 'bulma/css/bulma.css'
 
 const InitialState = {
   isLoggedIn: false,
-  route: "itemLookup",
+  route: "signin",
   input: "",
   user: {
     id: "",
     username: "",
-  },
-  selectedDish: {
-    fid: "",
-    imeJedi: "",
-    tipJedi: "",
-    sestavine: [],
-    postopek: "",
   }
 }
-
 class App extends Component {
   constructor() {
     super();
@@ -38,13 +30,6 @@ class App extends Component {
       user: {
         id: "",
         username: "",
-      },
-      selectedDish: {
-        fid: "",
-        imeJedi: "",
-        tipJedi: "",
-        sestavine: [],
-        postopek: "",
       }
     }
   }
@@ -53,13 +38,8 @@ class App extends Component {
     this.setState(InitialState);
   }
 
-  QueryDishes = () => {
-    console.log("");
-  }
-
   updateInput = (event) => {
     this.setState({input: event.target.value})
-    this.QueryDishes();
   }
 
   loadUser = (data) => {
@@ -98,7 +78,7 @@ class App extends Component {
         this.state.route === "register" 
         ?
         <div>
-          <Register />
+          <Register onRouteChange={this.onRouteChange} />
         </div>
           :
         // _________________________________________
@@ -113,7 +93,8 @@ class App extends Component {
           <Greetings username={this.state.user.username}/>
           <Searchbar updateInput={this.updateInput}/>
           <Scroll>
-            <List 
+            <List
+            input ={this.state.input} 
             showFoodInfo ={this.showFoodInfo}
             onRouteChange={this.onRouteChange}
             />

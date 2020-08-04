@@ -1,30 +1,54 @@
 import React, { Component } from 'react'
 import "./List.css"
-import { food } from  "../../container/sample"
 import Item from "../Item/Item";
+import Axios from 'axios';
 
 
 
 class List extends Component{
-    render(){
-        return(
-            <div className="columns is-multiline b pa3" style={{textAlign: "center"}}>
-                {food.map(fud => {
-                    return (
-                        <div key={fud.fid} className="column is-4">
-                            <Item
-                            onRouteChange={this.props.onRouteChange} 
-                            imeJedi={fud.imeJedi} 
-                            tipJedi={fud.tipJedi}
-                            fid    = {fud.fid}
-                            showFoodInfo = {this.props.showFoodInfo}
-                            />
-                        </div>
-                    )
-                })}
-            </div>
-        );
+
+    constructor(){
+        super()
+        this.state = {
+            items: [],
+            errorMessage: ""
+        }
     }
-}
+    componentDidMount() {
+        Axios.get("http://localhost:3000/food")
+        .then(response => {
+            this.setState({items: response.data})
+        })
+        .catch(err => {
+            this.setState({errorMessage: err.message});
+        })
+    }
+
+    render(){
+        const { input } = this.props
+        const filterItems = this.state.items.filter(item => {
+            return item.jed.toLowerCase().includes(input.toLowerCase());
+        })
+            return(
+                    <div className="columns is-multiline b pa3" style={{textAlign: "center"}}>
+                        {
+                        filterItems.map(food => {
+                            return (
+                                <div key={food.id} className="column is-4">
+                                    <Item
+                                    onRouteChange={this.props.onRouteChange} 
+                                    imeJedi ={food.jed} 
+                                    tipJedi ={food.tip}
+                                    fid     = {food.id}
+                                    showFoodInfo = {this.props.showFoodInfo}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </div>
+                );
+            }
+        }
+
 
 export default List;

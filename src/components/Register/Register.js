@@ -24,8 +24,24 @@ class Register extends Component {
         this.setState({password: event.target.value});
     }
 
-    onRegister = (event) =>{
-        console.log(this.state)
+    onRegister = (event) => {  
+        fetch("http://localhost:3000/register", ({
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json" 
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password,
+            })
+        })).then(response => response.json())
+        .then(data => {
+            const success = `User ${this.state.username} succesfully registered`
+            if (data.message === success){
+                this.props.onRouteChange("signin")
+            }
+        })
     }
 
     render(){
