@@ -4,7 +4,7 @@ import "./Scroll.css"
 // Children
 const Scroll = (props) => {
     return (
-        <div className="scrollPane" style={{overflowY: "scroll"}}>
+        <div className="scrollPane" style={{overflowY: "scroll", overflowX: "hidden"}}>
             {props.children}
         </div>
     );

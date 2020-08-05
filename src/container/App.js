@@ -32,51 +32,46 @@ class App extends Component {
     })
   }
 
-  lookupItem = (jed) =>{
-
-  }
-
-
   render(){ 
-  return(
-    <Router>
-      <div className="app">
-        <Navigation 
-          userId={this.state.user.id}
-          logout={this.logout}/>
-        <Switch>
-          <Route path="/signin">
-          {
-            this.state.loggedIn ? 
-            <Redirect to="/"/> 
-            : 
-            <SignIn loadUser={this.loadUser} />
-          }    
-          </Route>
-          <Route path="/register">
-          {
-            this.state.loggedIn ? 
-            <Redirect to="/"/> 
-            : 
-            <Register onRouteChange={this.onRouteChange} />
-          } 
-          </Route>
-          <Route path="/food/:id">
-            <ItemLookup />  
-          </Route>
-          <Route path="/">
+    return(
+      <Router>
+        <div className="app">
+          <Navigation 
+            userId={this.state.user.id}
+            logout={this.logout}/>
+          <Switch>
+            <Route path="/signin">
             {
-            this.state.loggedIn ? 
-            <HomePage username = {this.state.user.username} /> 
-            : 
-            <Redirect to="/signin"/> 
-            }
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}   
+              this.state.loggedIn ? 
+              <Redirect to="/"/> 
+              : 
+              <SignIn loadUser={this.loadUser} />
+            }    
+            </Route>
+            <Route path="/register">
+            {
+              this.state.loggedIn ? 
+              <Redirect to="/"/> 
+              : 
+              <Register onRouteChange={this.onRouteChange} />
+            } 
+            </Route>
+            <Route path="/food/:id">
+              <ItemLookup />  
+            </Route>
+            <Route path="/">
+              {
+              this.state.loggedIn ? 
+              <HomePage username = {this.state.user.username} /> 
+              : 
+              <Redirect to="/signin"/> 
+              }
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
+  }   
 }
 
 export default App;

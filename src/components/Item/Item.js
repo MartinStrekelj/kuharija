@@ -1,8 +1,9 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 import "./Item.css"
 
 
-const Item = ({ tipJedi, imeJedi,  id, lookupItem}) =>{
+const Item = ({ tipJedi, imeJedi,  id}) =>{
     return(
         <div className="card b--solid bw2">
             <div className="card-image ">
@@ -16,13 +17,14 @@ const Item = ({ tipJedi, imeJedi,  id, lookupItem}) =>{
             </div>
             <div className="card-footer">
                 <div className="card-footer-item">
-                    <button
-                    className="button is-link is-fullwidth is-outlined"  
-                    onClick={() => {
-                        lookupItem({id})
-                        }}> 
-                        {"Recept".toUpperCase()}
-                    </button>
+                    <Link to={{
+                        pathname: `/food/${id}`,
+                    }}>
+                        <button
+                        className="button is-link is-fullwidth is-outlined"> 
+                            {"Recept".toUpperCase()}
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

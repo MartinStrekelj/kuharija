@@ -1,0 +1,38 @@
+.Itemlookup{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+.Itemlookup .Itemlookup__title{
+    padding: 15px;
+    text-align: center;
+}
+
+.Itemlookup .Itemlookup__sestavine{
+    text-align: left;
+    font-size: 1.3em;
+
+}
+
+.Itemlookup .Itemlookup__sestavine h1{
+    font-size: 1.4em;
+}
+
+.Itemlookup .Itemlookup__sestavine li{
+    margin-left: 40px;
+}
+
+.Itemlookup .Itemlookup__postopek{
+    text-align: left;
+    font-size: 1.3em;
+}
+.Itemlookup .Itemlookup__postopek p{
+    font-size: 1.1em;
+}
+
+.Itemlookup .Itemlookup__postopek h1{
+    font-size: 1.4em;
+}

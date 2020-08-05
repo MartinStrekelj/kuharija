@@ -1,31 +1,53 @@
-import React, { Component } from "react"
+import React, { useState, useEffect } from "react"
+import "./ItemLookup.css"
+import { useParams } from "react-router-dom"
 
-class ItemLookup extends Component {
+const ItemLookup = () => {
+    const[food, setFood] = useState({
+        jed: "",
+        tip: "",
+        postopek: "",
+        sestavine: [],
+    })
+    const {id} = useParams();
 
-    constructor(){
-        super()
-        this.state = {
-            food: {
-                id: "",
-                jed: "",
-                tip: "",
-                postopek: "",
-                sestavine: {},
-            }
+    useEffect(() => {
+        if(!food.jed){
+        fetch(`http://localhost:3000/food/${id}`)
+        .then(response => response.json())
+        .then(data => setFood(data[0]))
         }
-    }
+    })
 
-    componentDidMount() {
-        fetch()
-    }
-
-    render(){
-        return(
-            <div>
-                <h1>{this.state.food.jed}</h1>
-          </div>
+    return(
+        food.jed ?
+        ( 
+        <div className="Itemlookup container">
+            <div className="Itemlookup__title">
+                <p className="f1 black-0"> {food.jed} </p>
+                <p className="f4 black-40"> { food.tip }</p>
+                <hr></hr>
+            </div>
+            <div className="columns">
+            <div className="Itemlookup__sestavine column is-half">
+                <h1>Potrebujemo:</h1>
+                    {/* {food.sestavine.map(sestavina => {
+                    return (<li>{sestavina}</li>)
+                })
+                } */}
+            </div>
+            <div className="Itemlookup__postopek column is-half">
+                <h1>Postopek:</h1>
+                <p>{food.postopek}</p>
+            </div>
+            </div>
+        </div>
         )
-    }
+        :
+        <div>
+            <h1>Loading</h1>
+        </div>
+    )
 }
 
 export default ItemLookup;

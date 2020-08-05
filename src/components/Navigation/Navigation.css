@@ -6,20 +6,18 @@
 }
 
 .navBtn button,a{
-    margin: 5px;
+    margin: 2px;
 }
 
 nav button,a {
     font-weight: 700;
     font-size: 1.2em;
     padding: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
     text-decoration: none;
     background-color: white;
     color: black;
-}
-
-nav button:hover, a:hover{
-    color: rgb(50, 50, 195);
 }
 
 
@@ -31,6 +29,7 @@ nav button:hover, a:hover{
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.7);
     width: 100%;
+    margin-bottom: 3em;
 }
 
 .dashboardNav button{

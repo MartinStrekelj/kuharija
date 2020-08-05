@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Navigation.css";
+import { Link } from 'react-router-dom';
 
 const Navigation = ({logout, userId}) => {
     return(
@@ -16,17 +17,21 @@ const Navigation = ({logout, userId}) => {
     </nav>      
     : // User is NOT logged in:
     // User is on register route
-        <nav className="navBtn"> 
-              <a
+        <nav className="navBtn">
+          <Link to="/signin"> 
+              <button
               className="pointer button is-link is-outlined"
-              href="signin">
+              >
                 { "Prijava".toUpperCase() }
-              </a>
-              <a
+              </button>
+          </Link>
+          <Link to="/register">
+              <button
                 className=" pointer button is-link is-outlined" 
-                href="register">
+                >
             { "Registracija".toUpperCase() }
-          </a>
+          </button>
+        </Link>
         </nav>
     )
 }   
