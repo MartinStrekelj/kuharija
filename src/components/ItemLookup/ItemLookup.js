@@ -1,12 +1,31 @@
-import React from "react";
+import React, { Component } from "react"
 
-const ItemLookup = ({izbranaJed}) => {
-    return(
+class ItemLookup extends Component {
+
+    constructor(){
+        super()
+        this.state = {
+            food: {
+                id: "",
+                jed: "",
+                tip: "",
+                postopek: "",
+                sestavine: {},
+            }
+        }
+    }
+
+    componentDidMount() {
+        fetch()
+    }
+
+    render(){
+        return(
             <div>
-                <h1>{izbranaJed.jed}</h1>
-            </div>
-    )
-
+                <h1>{this.state.food.jed}</h1>
+          </div>
+        )
+    }
 }
 
 export default ItemLookup;

@@ -9,15 +9,6 @@ import 'bulma/css/bulma.css'
 import HomePage from '../components/HomePage/HomePage';
 
 
-const InitialState = {
-  isLoggedIn: false,
-  input: "",
-  user: {
-    id: "",
-    username: "",
-  },
-  selectedId: ""
-}
 
 class App extends Component {
   constructor() {
@@ -31,68 +22,54 @@ class App extends Component {
     }
   }
 
-  logout = () => {
-    this.setState(InitialState);
-  }
-
   loadUser = (data) => {
     this.setState({
-      isLoggedIn: true,
+      loggedIn: true,
       user: {
         id: data.id,
         username: data.username,
       }
     })
-    this.onRouteChange("home")
   }
 
   lookupItem = (jed) =>{
-    fetch(`http://localhost:3000/food/?id=${jed.id}`)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({selectedDish: {
-        id: data[0].id,
-        jed: data[0].jed,
-        tip: data[0].tip,
-        postopek: data[0].postopek,
-        sestavine: data[0].sestavine
-        }})
-      this.onRouteChange("lookup")
-    })
-    .catch(err => console.log("Error with lookup"))
+
   }
 
-  onRouteChange = (newRoute) =>{
-    this.setState({route: newRoute});
-  }
 
   render(){ 
   return(
     <Router>
       <div className="app">
-        <Navigation
-          onRouteChange ={this.onRouteChange} 
+        <Navigation 
           userId={this.state.user.id}
           logout={this.logout}/>
         <Switch>
           <Route path="/signin">
-            <div>
-              <SignIn loadUser={this.loadUser} />
-            </div> 
+          {
+            this.state.loggedIn ? 
+            <Redirect to="/"/> 
+            : 
+            <SignIn loadUser={this.loadUser} />
+          }    
           </Route>
           <Route path="/register">
-            <div>
-              <Register onRouteChange={this.onRouteChange} />
-            </div>
+          {
+            this.state.loggedIn ? 
+            <Redirect to="/"/> 
+            : 
+            <Register onRouteChange={this.onRouteChange} />
+          } 
           </Route>
           <Route path="/food/:id">
-            <ItemLookup izbranaJed={this.state.selectedDish} />  
+            <ItemLookup />  
           </Route>
           <Route path="/">
-            {this.state.loggedIn ? 
-              <Redirect to="/signin" /> 
-              : 
-              <HomePage username = {this.state.user.username} /> 
+            {
+            this.state.loggedIn ? 
+            <HomePage username = {this.state.user.username} /> 
+            : 
+            <Redirect to="/signin"/> 
             }
           </Route>
         </Switch>
