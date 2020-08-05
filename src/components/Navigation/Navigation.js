@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Navigation.css";
 
-const Navigation = ({logout, onRouteChange, route, userId}) => {
+const Navigation = ({logout, userId}) => {
     return(
     userId ?
     // if user IS logged in:
@@ -17,16 +17,16 @@ const Navigation = ({logout, onRouteChange, route, userId}) => {
     : // User is NOT logged in:
     // User is on register route
         <nav className="navBtn"> 
-              <button
+              <a
               className="pointer button is-link is-outlined"
-              onClick={() => onRouteChange("signin")}>
+              href="signin">
                 { "Prijava".toUpperCase() }
-              </button>
-              <button
+              </a>
+              <a
                 className=" pointer button is-link is-outlined" 
-                onClick={() => onRouteChange("register")}>
+                href="register">
             { "Registracija".toUpperCase() }
-          </button>
+          </a>
         </nav>
     )
 }   

@@ -5,11 +5,11 @@
     margin-bottom: 3em;
 }
 
-.navBtn button{
+.navBtn button,a{
     margin: 5px;
 }
 
-nav button {
+nav button,a {
     font-weight: 700;
     font-size: 1.2em;
     padding: 10px;
@@ -18,17 +18,10 @@ nav button {
     color: black;
 }
 
-nav button:hover{
+nav button:hover, a:hover{
     color: rgb(50, 50, 195);
 }
 
-
-
-.shadow {
-    -webkit-box-shadow: 3px 3px 5px 1px #000;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-    -moz-box-shadow:    3px 3px 5px 1px #000;  /* Firefox 3.5 - 3.6 */
-    box-shadow:         3px 3px 5px 1px #000;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
-  }
 
 .dashboardNav{
     display: flex;
