@@ -4,6 +4,13 @@
     background-color: white;
     padding: 20px;
     padding-bottom: 30px;
+    position: relative;
+}
+
+.Itemlookup__backbutton {
+    position: absolute;
+    top: 20px;
+    left:20px;
 }
 
 .Itemlookup .Itemlookup__title{
@@ -35,4 +42,21 @@
 
 .Itemlookup .Itemlookup__postopek h1{
     font-size: 1.4em;
+}
+
+/* Media query */
+
+@media only screen and (max-width: 900px){
+
+    .Itemlookup{
+        position: unset ;
+    }
+
+    .Itemlookup__backbutton{
+        position: relative;
+    }
+
+    .Itemlookup__backbutton button {
+        display: block;
+    }
 }

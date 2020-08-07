@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./ItemLookup.css"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 const ItemLookup = () => {
     const[food, setFood] = useState({
@@ -23,6 +23,14 @@ const ItemLookup = () => {
         food.jed ?
         ( 
         <div className="Itemlookup container">
+            <div className="Itemlookup__backbutton">
+                <Link to="/">
+                    <button className="button is-link is-outlined">
+                        Pojdi nazaj
+                    </button>
+                </Link>
+            </div>
+
             <div className="Itemlookup__title">
                 <p className="f1 black-0"> {food.jed} </p>
                 <p className="f4 black-40"> { food.tip }</p>
@@ -31,10 +39,10 @@ const ItemLookup = () => {
             <div className="columns">
             <div className="Itemlookup__sestavine column is-half">
                 <h1>Potrebujemo:</h1>
-                    {/* {food.sestavine.map(sestavina => {
+                    {food.sestavine.map(sestavina => {
                     return (<li>{sestavina}</li>)
                 })
-                } */}
+                }
             </div>
             <div className="Itemlookup__postopek column is-half">
                 <h1>Postopek:</h1>
@@ -45,7 +53,7 @@ const ItemLookup = () => {
         )
         :
         <div>
-            <h1>Loading</h1>
+            <h1>Loading...</h1>
         </div>
     )
 }

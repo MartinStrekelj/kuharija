@@ -3,10 +3,12 @@ import Navigation from "../components/Navigation/Navigation"
 import SignIn from '../components/SignIn/SignIn';
 import Register from '../components/Register/Register';
 import ItemLookup from '../components/ItemLookup/ItemLookup';
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import "tachyons";
 import 'bulma/css/bulma.css'
 import HomePage from '../components/HomePage/HomePage';
+import ProtectedPage from '../components/ProtectedPage/ProtectedPage';
+import AddFood from '../components/AddFood/AddFood';
 
 
 
@@ -14,7 +16,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      LoggedIn: false,
+      loggedIn: false,
       user: {
         id: "",
         username: "",
@@ -57,15 +59,19 @@ class App extends Component {
             } 
             </Route>
             <Route path="/food/:id">
-              <ItemLookup />  
+              <ProtectedPage loggedIn={this.state.loggedIn}>   
+                <ItemLookup />
+              </ProtectedPage>  
+            </Route>
+            <Route path="/addFood">
+              <ProtectedPage loggedIn={this.state.loggedIn}>
+                <AddFood key="addFood" />
+              </ProtectedPage>
             </Route>
             <Route path="/">
-              {
-              this.state.loggedIn ? 
-              <HomePage username = {this.state.user.username} /> 
-              : 
-              <Redirect to="/signin"/> 
-              }
+              <ProtectedPage loggedIn={this.state.loggedIn}>
+                <HomePage username = {this.state.user.username} />
+              </ProtectedPage> 
             </Route>
           </Switch>
         </div>

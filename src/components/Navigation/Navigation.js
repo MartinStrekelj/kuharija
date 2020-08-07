@@ -1,19 +1,25 @@
 import React from 'react';
 import "./Navigation.css";
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navigation = ({logout, userId}) => {
     return(
     userId ?
     // if user IS logged in:
-    <nav className="dashboardNav">
-          <button
-          className="button is-link is-outlined"  
-          onClick={logout}>
-            Odjava
-          </button>
-          <button className="button is-link is-outlined">Filtriraj</button>
-          <button className="button is-link is-outlined">Dodaj novo</button>
+    <nav className="navBtn">
+          <NavLink to="/">
+            <button
+            className="button is-link is-outlined"  
+            onClick={logout}>
+              Odjava
+            </button>
+          </NavLink>
+          <NavLink to="/">
+            <button className="button is-link is-outlined ">Filtriraj</button>
+          </NavLink>
+          <NavLink to="/addFood">
+            <button className="button is-link is-outlined ">Dodaj novo</button>
+          </NavLink>
     </nav>      
     : // User is NOT logged in:
     // User is on register route

@@ -1,8 +1,12 @@
+nav {
+    position: sticky;
+}
+
 .navBtn{
     display: flex;
     flex-direction: row-reverse;
     background-color:rgba(255, 255, 255, 0.7);
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
 }
 
 .navBtn button,a{
@@ -20,26 +24,6 @@ nav button,a {
     color: black;
 }
 
-
-.dashboardNav{
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: right;
-    align-content: center;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.7);
-    width: 100%;
-    margin-bottom: 3em;
-}
-
-.dashboardNav button{
-    font-size: 1.1em;
-    float: left;
-    text-align: center;
-    padding: 15px;
-    border-right: 1px solid black ;
-    margin: 5px;
-}
 
   @media only screen and (max-width: 600px) {
     nav button {
