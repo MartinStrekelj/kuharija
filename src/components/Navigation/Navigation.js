@@ -7,16 +7,6 @@ const Navigation = ({logout, userId}) => {
     userId ?
     // if user IS logged in:
     <nav className="navBtn">
-          <NavLink to="/">
-            <button
-            className="button is-link is-outlined"  
-            onClick={logout}>
-              Odjava
-            </button>
-          </NavLink>
-          <NavLink to="/">
-            <button className="button is-link is-outlined ">Filtriraj</button>
-          </NavLink>
           <NavLink to="/addFood">
             <button className="button is-link is-outlined ">Dodaj novo</button>
           </NavLink>

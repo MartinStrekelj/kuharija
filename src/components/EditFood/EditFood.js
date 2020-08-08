@@ -1,28 +1,30 @@
-import React, { useState } from "react"
-import "./AddFood.css"
+import React, { useState, useEffect } from "react"
+import "../AddFood/AddFood.css"
 import { useInput } from "../../hooks/useInput";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const AddFood = () => {
+const EditFood = () => {
 
-    const { value: jed, bind:bindJed, reset: resetJed} = useInput("");
-    const { value: tip, bind:bindTip, reset: resetTip} = useInput("Predjed");
-    const { value: postopek, bind:bindPostopek, reset: resetPostopek} = useInput("");
+    const { value: jed, bind:bindJed,  setValue: setJed} = useInput("");
+    const { value: tip, bind:bindTip,  setValue: setTip} = useInput("");
+    const { value: postopek, bind:bindPostopek, setValue: setPostopek} = useInput("");
     const { value: sestavina, bind:bindSestavina, reset: resetSestavina} = useInput("");
     const [sestavine, setSestavine]= useState([])
     const [error, setErrorMessage]  = useState("")
     const [serverResponse, setServerResponse] = useState("");
+    const { id } = useParams();
 
     const onButtonSubmit = (event) => {
         event.preventDefault();
-        fetch("http://localhost:3000/food", 
+        fetch(`http://localhost:3000/food/${id}`, 
             {
-                method: "POST",
+                method: "PUT",
                 mode: "cors",
                 headers: {
                     "Content-type": "application/json"
                 },
                 body: JSON.stringify( {
+                    id: id,
                     imejedi: jed,
                     tipjedi: tip,
                     postopek: postopek,
@@ -32,14 +34,23 @@ const AddFood = () => {
         ).then(response => response.json())
         .then(data => {
             setServerResponse(data.message)
-            resetJed()
-            resetPostopek()
-            resetTip()
-            setSestavine([])
         })
-        .catch(err => setServerResponse(err));
+        .catch(err => setServerResponse(err.message));
     }
 
+    useEffect(() => {
+        if(!jed){
+            fetch(`http://localhost:3000/food/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                setJed(data[0].jed);
+                setTip(data[0].tip);
+                setPostopek(data[0].postopek);
+                setSestavine(data[0].sestavine)
+            })
+            .catch(err => setErrorMessage("Napaka pri pridobivanju informacij za urejanje."))
+        }
+    })
 
     return(
         <div className="AddFood">
@@ -112,7 +123,7 @@ const AddFood = () => {
                 <br/>
                 <button
                 onClick={onButtonSubmit} 
-                className="button is-link is-outlined">Dodaj</button> 
+                className="button is-link is-outlined">Posodobi</button> 
             </div>
             </div>
         </div>
@@ -120,4 +131,4 @@ const AddFood = () => {
 
 }
 
-export default AddFood;
+export default EditFood;

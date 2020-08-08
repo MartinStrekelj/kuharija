@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
 import "./ItemLookup.css"
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useRouteMatch, Switch, Route } from "react-router-dom"
+import ProtectedPage from "../ProtectedPage/ProtectedPage"
+import EditFood from "../EditFood/EditFood"
 
-const ItemLookup = () => {
+const ItemLookup = ({loggedIn}) => {
     const[food, setFood] = useState({
         jed: "",
         tip: "",
@@ -19,37 +21,52 @@ const ItemLookup = () => {
         }
     })
 
+    let { path, url } = useRouteMatch();
+
     return(
         food.jed ?
-        ( 
-        <div className="Itemlookup container">
-            <div className="Itemlookup__backbutton">
-                <Link to="/">
-                    <button className="button is-link is-outlined">
-                        Pojdi nazaj
-                    </button>
-                </Link>
+        (
+        <Switch>
+            <Route exact path={path}> 
+            <div className="Itemlookup container">
+                <div className="Itemlookup__backbutton">
+                    <Link to="/">
+                        <button className="button is-link is-outlined">
+                            Pojdi nazaj
+                        </button>
+                    </Link>
+                    <Link to={`${url}/editFood`}>
+                        <button className="button is-link is-outlined">
+                            Uredi
+                        </button>
+                    </Link>
+                </div>
+                    <div className="Itemlookup__title">
+                    <p className="f1 black-0"> {food.jed} </p>
+                    <p className="f4 black-40"> { food.tip }</p>
+                    <hr></hr>
+                </div>
+                <div className="columns">
+                <div className="Itemlookup__sestavine column is-half">
+                    <h1>Potrebujemo:</h1>
+                        {food.sestavine.map(sestavina => {
+                        return (<li key={sestavina}>{sestavina}</li>)
+                    })
+                    }
+                </div>
+                <div className="Itemlookup__postopek column is-half">
+                    <h1>Postopek:</h1>
+                    <p>{food.postopek}</p>
+                </div>
+                </div>
             </div>
-
-            <div className="Itemlookup__title">
-                <p className="f1 black-0"> {food.jed} </p>
-                <p className="f4 black-40"> { food.tip }</p>
-                <hr></hr>
-            </div>
-            <div className="columns">
-            <div className="Itemlookup__sestavine column is-half">
-                <h1>Potrebujemo:</h1>
-                    {food.sestavine.map(sestavina => {
-                    return (<li>{sestavina}</li>)
-                })
-                }
-            </div>
-            <div className="Itemlookup__postopek column is-half">
-                <h1>Postopek:</h1>
-                <p>{food.postopek}</p>
-            </div>
-            </div>
-        </div>
+            </Route>
+            <Route path={`${path}/editFood`}>
+                    <ProtectedPage loggedIn={loggedIn}>
+                        <EditFood />
+                    </ProtectedPage>
+            </Route>
+        </Switch>
         )
         :
         <div>

@@ -12,6 +12,7 @@ import AddFood from '../components/AddFood/AddFood';
 
 
 
+
 class App extends Component {
   constructor() {
     super();
@@ -60,12 +61,12 @@ class App extends Component {
             </Route>
             <Route path="/food/:id">
               <ProtectedPage loggedIn={this.state.loggedIn}>   
-                <ItemLookup />
+                <ItemLookup loggedIn={this.state.loggedIn}/>
               </ProtectedPage>  
             </Route>
             <Route path="/addFood">
               <ProtectedPage loggedIn={this.state.loggedIn}>
-                <AddFood key="addFood" />
+                <AddFood />
               </ProtectedPage>
             </Route>
             <Route path="/">
