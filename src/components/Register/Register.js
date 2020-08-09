@@ -42,6 +42,8 @@ class Register extends Component {
             const success = `User ${this.state.username} succesfully registered`
             if (data.message === success){
                 this.props.onRouteChange("signin")
+            } else{
+                this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"})
             }
         }).catch(err => this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"}))
         } else {
