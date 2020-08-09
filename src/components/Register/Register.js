@@ -41,7 +41,13 @@ class Register extends Component {
         .then(data => {
             const success = `User ${this.state.username} succesfully registered`
             if (data.message === success){
-                this.props.onRouteChange("signin")
+
+                this.setState({
+                    errorMessage: "Uspešna registracija. Pojdi na prijavo!",
+                    username: "",
+                    email: "",
+                    password: ""
+            })
             } else{
                 this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"})
             }
@@ -56,11 +62,19 @@ class Register extends Component {
 
         let errorMessage = "";
         if(this.state.errorMessage){
-            errorMessage = 
-            <p className="help is-danger">
-                {this.state.errorMessage}
-            </p>
+            if(this.state.errorMessage === "Uspešna registracija. Pojdi na prijavo!"){
+                errorMessage = 
+                <p className="help is-success">
+                    {this.state.errorMessage}
+                </p>
+            }else{
+                errorMessage = 
+                <p className="help is-danger">
+                    {this.state.errorMessage}
+                </p>
+            }
         }
+
         return(
             <div className="wrapper">
                 <div className="pa4">
