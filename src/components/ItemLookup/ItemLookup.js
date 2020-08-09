@@ -56,7 +56,7 @@ const ItemLookup = ({loggedIn}) => {
                 </div>
                 <div className="Itemlookup__postopek column is-half">
                     <h1>Postopek:</h1>
-                    <pre style={{whiteSpace: "pre-wrap"}}>{food.postopek}</pre>
+                    <pre style={{whiteSpace: "pre-wrap", backgroundColor: "white", fontFamily:"Varela Round"}}>{food.postopek}</pre>
                 </div>
                 </div>
             </div>

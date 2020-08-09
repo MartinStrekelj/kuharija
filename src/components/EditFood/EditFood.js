@@ -16,7 +16,7 @@ const EditFood = () => {
 
     const onButtonSubmit = (event) => {
         event.preventDefault();
-        fetch(`https://pure-castle-45538.herokuapp.com/${id}`, 
+        fetch(`https://pure-castle-45538.herokuapp.com/food/${id}`, 
             {
                 method: "PUT",
                 mode: "cors",
