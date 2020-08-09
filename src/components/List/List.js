@@ -14,7 +14,7 @@ class List extends Component{
         }
     }
     componentDidMount() {
-        fetch("http://localhost:3000/food")
+        fetch("https://pure-castle-45538.herokuapp.com/food")
         .then(response => response.json())
         .then(data => {
             this.setState({items: data})

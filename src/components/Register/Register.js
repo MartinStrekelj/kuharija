@@ -9,6 +9,7 @@ class Register extends Component {
             username: "",
             email: "",
             password: "",
+            errorMessage: ""
         }
     }
 
@@ -24,8 +25,9 @@ class Register extends Component {
         this.setState({password: event.target.value});
     }
 
-    onRegister = () => {  
-        fetch("http://localhost:3000/register", ({
+    onRegister = () => {
+        if(this.state.username && this.state.password && this.state.email){
+            fetch("https://pure-castle-45538.herokuapp.com/register", ({
             method: "POST",
             headers: {
                 "Content-Type": "application/json" 
@@ -41,10 +43,22 @@ class Register extends Component {
             if (data.message === success){
                 this.props.onRouteChange("signin")
             }
-        })
+        }).catch(err => this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"}))
+        } else {
+            this.setState({errorMessage: "Izpolnite vsa polja"})
+        }
+        
     }
 
     render(){
+
+        let errorMessage = "";
+        if(this.state.errorMessage){
+            errorMessage = 
+            <p className="help is-danger">
+                {this.state.errorMessage}
+            </p>
+        }
         return(
             <div className="wrapper">
                 <div className="pa4">
@@ -77,6 +91,7 @@ class Register extends Component {
                         onClick={this.onRegister}>
                             Registracija
                         </button>
+                        {errorMessage}
                     </div>
                 </div>
             </div>

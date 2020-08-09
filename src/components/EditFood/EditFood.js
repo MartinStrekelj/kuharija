@@ -16,7 +16,7 @@ const EditFood = () => {
 
     const onButtonSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/food/${id}`, 
+        fetch(`https://pure-castle-45538.herokuapp.com/${id}`, 
             {
                 method: "PUT",
                 mode: "cors",
@@ -40,7 +40,7 @@ const EditFood = () => {
 
     useEffect(() => {
         if(!jed){
-            fetch(`http://localhost:3000/food/${id}`)
+            fetch(`https://pure-castle-45538.herokuapp.com/food/${id}`)
             .then(response => response.json())
             .then(data => {
                 setJed(data[0].jed);
@@ -51,6 +51,12 @@ const EditFood = () => {
             .catch(err => setErrorMessage("Napaka pri pridobivanju informacij za urejanje."))
         }
     })
+
+    const removeItem = i => {
+        setSestavine(
+            sestavine.filter(item => i !== item)
+        )
+    }
 
     return(
         <div className="AddFood">
@@ -103,9 +109,25 @@ const EditFood = () => {
                         resetSestavina();
                         setErrorMessage("");
                     }else{
-                        setErrorMessage("Polje za sestavino ne sme biti prazno!")
+                        setErrorMessage("Polje za sestavino je prazno!")
                     }
                 }}>Dodaj</button>
+                <button className="button is-link is-outlined is-small"
+                onClick={() => {
+                    if(sestavina){
+                        removeItem(sestavina);
+                        resetSestavina();
+                        setErrorMessage("");
+                    }else{
+                        setErrorMessage("Polje za sestavino je prazno!")
+                    }
+                }}>Odstrani vpisano</button>
+                <button className="button is-link is-outlined is-small"
+                onClick={() => {
+                    setSestavine([]);
+                    resetSestavina();
+                    setErrorMessage("");
+                }}>Odstrani vse</button>
                 <p className="help is-info">Sestavine se izpisujejo spodaj</p>
                 <br></br>
                 {(sestavine.length) ?

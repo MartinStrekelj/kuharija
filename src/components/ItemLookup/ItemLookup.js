@@ -15,7 +15,7 @@ const ItemLookup = ({loggedIn}) => {
 
     useEffect(() => {
         if(!food.jed){
-        fetch(`http://localhost:3000/food/${id}`)
+        fetch(`https://pure-castle-45538.herokuapp.com/food/${id}`)
         .then(response => response.json())
         .then(data => setFood(data[0]))
         }

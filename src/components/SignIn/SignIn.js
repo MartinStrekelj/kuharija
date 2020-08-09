@@ -21,29 +21,33 @@ class SignIn extends Component {
     }
 
 
-
     onSignIn = () =>{
-        const user = {
-            username: this.state.username,
-            password: this.state.password,
-        }
-        fetch("http://localhost:3000/signin", ({
-            method: "POST",
-            mode: "cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(user)
-        }))
-        .then(response => response.json())
-        .then(user => {
-            if (user.id){
-                this.props.loadUser(user)
-            } else{
-                this.setState({errorMessage: "Napaka pri prijavi, poskusite še enkrat!"})
+        if (this.state.username && this.state.password){
+            const user = {
+                username: this.state.username,
+                password: this.state.password,
             }
-        })
-        .catch(err => this.setState({errorMessage: "Napaka pri prijavi, poskusite še enkrat!"}))
+            fetch("https://pure-castle-45538.herokuapp.com/signin", ({
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(user)
+            }))
+            .then(response => response.json())
+            .then(user => {
+                if (user.id){
+                    this.props.loadUser(user)
+                } else{
+                    this.setState({errorMessage: "Napaka pri prijavi, poskusite še enkrat!"})
+                }
+            })
+            .catch(err => this.setState({errorMessage: "Napaka pri prijavi, poskusite še enkrat!"}))
+        } else{
+            this.setState({errorMessage: "Izpolnite vsa polja"})
+        }
+        
     }
 
     render(){

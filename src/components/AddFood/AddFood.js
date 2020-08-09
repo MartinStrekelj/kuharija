@@ -15,7 +15,7 @@ const AddFood = () => {
 
     const onButtonSubmit = (event) => {
         event.preventDefault();
-        fetch("http://localhost:3000/food", 
+        fetch("https://pure-castle-45538.herokuapp.com/food", 
             {
                 method: "POST",
                 mode: "cors",
@@ -39,6 +39,13 @@ const AddFood = () => {
         })
         .catch(err => setServerResponse(err));
     }
+
+    const removeItem = i => {
+        setSestavine(
+            sestavine.filter(item => i !== item)
+        )
+    }
+
 
 
     return(
@@ -92,9 +99,25 @@ const AddFood = () => {
                         resetSestavina();
                         setErrorMessage("");
                     }else{
-                        setErrorMessage("Polje za sestavino ne sme biti prazno!")
+                        setErrorMessage("Polje za sestavino je prazno!")
                     }
                 }}>Dodaj</button>
+                <button className="button is-link is-outlined is-small"
+                onClick={() => {
+                    if(sestavina){
+                        removeItem(sestavina);
+                        resetSestavina();
+                        setErrorMessage("");
+                    }else{
+                        setErrorMessage("Polje za sestavino je prazno!")
+                    }
+                }}>Odstrani vpisano</button>
+                <button className="button is-link is-outlined is-small"
+                onClick={() => {
+                    setSestavine([]);
+                    resetSestavina();
+                    setErrorMessage("");
+                }}>Odstrani vse</button>
                 <p className="help is-info">Sestavine se izpisujejo spodaj</p>
                 <br></br>
                 {(sestavine.length) ?
