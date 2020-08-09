@@ -105,7 +105,7 @@ const EditFood = () => {
                 <button className="button is-link is-outlined is-small"
                 onClick={() => {
                     if(sestavina){
-                        setSestavine(sestavine.concat(sestavina));
+                        setSestavine(sestavine.concat(sestavina.trim()));
                         resetSestavina();
                         setErrorMessage("");
                     }else{
@@ -115,7 +115,7 @@ const EditFood = () => {
                 <button className="button is-link is-outlined is-small"
                 onClick={() => {
                     if(sestavina){
-                        removeItem(sestavina);
+                        removeItem(sestavina.trim());
                         resetSestavina();
                         setErrorMessage("");
                     }else{

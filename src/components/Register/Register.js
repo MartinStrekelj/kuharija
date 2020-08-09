@@ -39,41 +39,31 @@ class Register extends Component {
             })
         })).then(response => response.json())
         .then(data => {
-            const success = `User ${this.state.username} succesfully registered`
-            if (data.message === success){
-
-                this.setState({
-                    errorMessage: "Uspešna registracija. Pojdi na prijavo!",
+            if (data.id){
+                return this.setState({
+                    errorMessage: data.message,
                     username: "",
                     email: "",
                     password: ""
             })
-            } else{
-                this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"})
+            } else {
+                return this.setState({errorMessage: data.message})
             }
         }).catch(err => this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"}))
         } else {
-            this.setState({errorMessage: "Izpolnite vsa polja"})
+            return this.setState({errorMessage: "Izpolnite vsa polja"})
         }
-        
     }
 
     render(){
 
         let errorMessage = "";
         if(this.state.errorMessage){
-            if(this.state.errorMessage === "Uspešna registracija. Pojdi na prijavo!"){
                 errorMessage = 
-                <p className="help is-success">
-                    {this.state.errorMessage}
-                </p>
-            }else{
-                errorMessage = 
-                <p className="help is-danger">
+                <p className="help is-info">
                     {this.state.errorMessage}
                 </p>
             }
-        }
 
         return(
             <div className="wrapper">
