@@ -12,10 +12,12 @@ const EditFood = () => {
     const [sestavine, setSestavine]= useState([])
     const [error, setErrorMessage]  = useState("")
     const [serverResponse, setServerResponse] = useState("");
+    const [loading, setLoading] = useState(false);
     const { id } = useParams();
 
     const onButtonSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         fetch(`https://pure-castle-45538.herokuapp.com/food/${id}`, 
             {
                 method: "PUT",
@@ -34,8 +36,12 @@ const EditFood = () => {
         ).then(response => response.json())
         .then(data => {
             setServerResponse(data.message)
+            setLoading(false);
         })
-        .catch(err => setServerResponse(err.message));
+        .catch(err => {
+            setServerResponse(err.message)
+            setLoading(false);
+        });
     }
 
     useEffect(() => {
@@ -80,6 +86,7 @@ const EditFood = () => {
                     {...bindJed}
                 />
                 {/* ________ */}
+                <br></br>
                 <br></br>
                 <label className="label"> Tip </label>
                 <div className="field">
@@ -143,9 +150,13 @@ const EditFood = () => {
                 <textarea className="textarea" placeholder="Vpiši recept"
                 {...bindPostopek}></textarea>
                 <br/>
+                {loading ? 
+                <button className="button is-link is-loading"/>
+                :
                 <button
                 onClick={onButtonSubmit} 
                 className="button is-link is-outlined">Posodobi</button> 
+                }
             </div>
             </div>
         </div>

@@ -10,11 +10,13 @@ const AddFood = () => {
     const { value: postopek, bind:bindPostopek, reset: resetPostopek} = useInput("");
     const { value: sestavina, bind:bindSestavina, reset: resetSestavina} = useInput("");
     const [sestavine, setSestavine]= useState([])
-    const [error, setErrorMessage]  = useState("")
+    const [error, setErrorMessage]  = useState("");
+    const [loading, setLoading] = useState(false);
     const [serverResponse, setServerResponse] = useState("");
 
     const onButtonSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         fetch("https://pure-castle-45538.herokuapp.com/food", 
             {
                 method: "POST",
@@ -36,8 +38,12 @@ const AddFood = () => {
             resetPostopek()
             resetTip()
             setSestavine([])
+            setLoading(false);
         })
-        .catch(err => setServerResponse(err));
+        .catch(err => {
+            setServerResponse(err);
+            setLoading(true);
+        })
     }
 
     const removeItem = i => {
@@ -133,9 +139,13 @@ const AddFood = () => {
                 <textarea className="textarea" placeholder="Vpiši recept"
                 {...bindPostopek}></textarea>
                 <br/>
+                {loading ? 
+                <button className="button is-link is-loading"/>
+                :
                 <button
                 onClick={onButtonSubmit} 
                 className="button is-link is-outlined">Dodaj</button> 
+                }
             </div>
             </div>
         </div>
