@@ -9,7 +9,8 @@ class Register extends Component {
             username: "",
             email: "",
             password: "",
-            errorMessage: ""
+            errorMessage: "",
+            loading: false
         }
     }
 
@@ -26,6 +27,7 @@ class Register extends Component {
     }
 
     onRegister = () => {
+        this.setState({loading: true});
         if(this.state.username && this.state.password && this.state.email){
             fetch("https://pure-castle-45538.herokuapp.com/register", ({
             method: "POST",
@@ -40,6 +42,7 @@ class Register extends Component {
         })).then(response => response.json())
         .then(data => {
             if (data.id){
+                this.setState({loading: false});
                 return this.setState({
                     errorMessage: data.message,
                     username: "",
@@ -47,10 +50,15 @@ class Register extends Component {
                     password: ""
             })
             } else {
+                this.setState({loading: false});
                 return this.setState({errorMessage: data.message})
             }
-        }).catch(err => this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"}))
+        }).catch(err => {
+            this.setState({loading: false});
+            this.setState({errorMessage: "Napaka pri registraciji, poskusite še enkrat!"})  
+        })
         } else {
+            this.setState({loading: false});
             return this.setState({errorMessage: "Izpolnite vsa polja"})
         }
     }
@@ -91,12 +99,18 @@ class Register extends Component {
                         style={{marginBottom: "15px"}}
                         />
                         <br></br>
+                        {this.state.loading ? 
+                        <button
+                        style={{ width: "70%", marginLeft: "15%"}} 
+                        className="button is-link is-medium is-loading"/>
+                        :
                         <button 
                         style={{ width: "70%", marginLeft: "15%"}} 
                         className="button is-link is-medium is-outlined" 
                         onClick={this.onRegister}>
                             Registracija
                         </button>
+                        }
                         {errorMessage}
                     </div>
                 </div>

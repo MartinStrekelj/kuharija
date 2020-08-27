@@ -9,6 +9,7 @@ class SignIn extends Component {
             username: "",
             password: "",
             errorMessage: "",
+            loading: false
         }
     }
 
@@ -22,6 +23,7 @@ class SignIn extends Component {
 
 
     onSignIn = () =>{
+        this.setState({loading: true})
         if (this.state.username && this.state.password){
             const user = {
                 username: this.state.username,
@@ -39,13 +41,16 @@ class SignIn extends Component {
             .then(user => {
                 if (user.id){
                     this.props.loadUser(user)
+                    this.setState({loading: false})
                 } else{
                     this.setState({errorMessage: "Napaka pri prijavi, poskusite še enkrat!"})
+                    this.setState({loading: false})
                 }
             })
             .catch(err => this.setState({errorMessage: "Napaka pri prijavi, poskusite še enkrat!"}))
         } else{
             this.setState({errorMessage: "Izpolnite vsa polja"})
+            this.setState({loading: false})
         }
         
     }
@@ -82,12 +87,18 @@ class SignIn extends Component {
                         onChange={this.onPasswordInputChange}
                         />
                         <br></br>
+                        {this.state.loading ? 
+                        <button
+                        style={{ width: "70%", marginLeft: "15%"}} 
+                        className="button is-link is-medium is-loading"/>
+                        :
                         <button 
                         style={{ width: "70%", marginLeft: "15%"}} 
                         className="button is-link is-medium is-outlined" 
                         onClick={this.onSignIn}>
                             Vpiši se
                         </button>
+                        }   
                         {errorMessage}
                     </div>
                 </div>
